@@ -1,0 +1,29 @@
+{
+  "name": "d3-shenanigans",
+  "version": "0.0.0",
+  "description": "a place to try out stupid ideas with d3.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matt-morris/d3-shenanigans.git"
+  },
+  "keywords": [
+    "d3",
+    "js",
+    "javascript",
+    "visualization",
+    "graph"
+  ],
+  "author": "matt-morris",
+  "bugs": {
+    "url": "https://github.com/matt-morris/d3-shenanigans/issues"
+  },
+  "homepage": "https://github.com/matt-morris/d3-shenanigans",
+  "devDependencies": {
+    "connect": "^3.3.3",
+    "serve-static": "^1.7.1"
+  }
+}

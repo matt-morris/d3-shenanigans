@@ -1,3 +1,8 @@
-console.log('ep.');
+console.log('d3-shenanigans.');
 
-// insert shenanigans here...
+// cheap and dirty dynamic scripts...
+window.loadScript = function(script) {
+  if (!window[script]) {
+    document.write('<script src="js/'+ script +'.js"><\/script>');
+  }
+};

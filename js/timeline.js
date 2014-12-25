@@ -12,7 +12,7 @@ function Timeline(el, options) {
   var data = options.data || [];
 
   var scale = d3.time.scale()
-                .domain([new Date('1901-01-01T00:00:00.000Z'), new Date('2040-01-01T23:59:59.000Z')])
+                .domain([new Date('1901-01-01T00:00:00.000Z'), new Date()])
                 .range([0, options.width]);
 
   vis.append('line')

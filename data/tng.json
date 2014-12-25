@@ -1,0 +1,16 @@
+[
+  { "date": "September 28, 1987", "name": "tng season 1 premiere", "episode": 1 },
+  { "date": "May 16, 1988",       "name": "tng season 1 finale",   "episode": 26 },
+  { "date": "November 21, 1988",  "name": "tng season 2 premiere", "episode": 1 },
+  { "date": "July 17, 1989",      "name": "tng season 2 finale",   "episode": 22 },
+  { "date": "September 25, 1989", "name": "tng season 3 premiere", "episode": 1 },
+  { "date": "June 18, 1990",      "name": "tng season 3 finale",   "episode": 26 },
+  { "date": "September 24, 1990", "name": "tng season 4 premiere", "episode": 1 },
+  { "date": "June 17, 1991",      "name": "tng season 4 finale",   "episode": 26 },
+  { "date": "September 23, 1991", "name": "tng season 5 premiere", "episode": 1 },
+  { "date": "June 15, 1992",      "name": "tng season 5 finale",   "episode": 26 },
+  { "date": "September 21, 1992", "name": "tng season 6 premiere", "episode": 1 },
+  { "date": "June 21, 1993",      "name": "tng season 6 finale",   "episode": 26 },
+  { "date": "September 20, 1993", "name": "tng season 7 premiere", "episode": 1 },
+  { "date": "May 23, 1994",       "name": "tng season 7 finale",   "episode": 26 }
+]

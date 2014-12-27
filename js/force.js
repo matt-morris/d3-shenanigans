@@ -90,7 +90,7 @@ function Graph(el) {
       nodeEnter.append('circle')
           .attr('class', 'node')
           .attr('r', function(d) { return d.size || 5; })
-          .style('fill', function(d) { return color(d.id); })
+          .style('fill', function(d) { return d.color || color(d.id); })
           .call(force.drag);
 
       node.append('title')

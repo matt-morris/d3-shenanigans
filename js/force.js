@@ -10,6 +10,7 @@ function Graph(el) {
       node.id = node.id || nodes.length;
       nodes.push(node);
       update();
+      return node;
     };
 
     this.removeNode = function (id) {
@@ -29,10 +30,12 @@ function Graph(el) {
     this.addLink = function (sourceId, targetId) {
         var sourceNode = findNode(sourceId);
         var targetNode = findNode(targetId);
+        var link = { source: sourceNode, target: targetNode};
 
         if ((sourceNode !== undefined) && (targetNode !== undefined)) {
-            links.push({ source: sourceNode, target: targetNode});
+            links.push(link);
             update();
+            return link;
         }
     };
 
@@ -86,7 +89,7 @@ function Graph(el) {
 
       nodeEnter.append('circle')
           .attr('class', 'node')
-          .attr('r', 5)
+          .attr('r', function(d) { return d.size || 5; })
           .style('fill', function(d) { return color(d.id); })
           .call(force.drag);
 

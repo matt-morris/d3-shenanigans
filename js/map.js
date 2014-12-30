@@ -4,5 +4,5 @@ d3.xml("data/usaLow.svg", "image/svg+xml", function(xml) {
     .attr('width', 1300)
     .attr('height', 850)
     .selectAll('path')
-    .on('click', function(d) { console.log(d); });
+    .on('click', function(d) { console.log(d3.select(this)[0][0].id); });
 });

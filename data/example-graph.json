@@ -1,0 +1,11 @@
+{
+  "nodes": [
+    { "id": "foo" },
+    { "id": "bar" },
+    { "id": "baz" },
+    { "id": "qux" }
+  ],
+  "links": [
+    { "source": "foo", "target": "bar" }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    { "id": "head", "size": 30 },
+    { "id": "chest", "size": 55 },
+    { "id": "left shoulder", "size": 15 },
+    { "id": "right shoulder", "size": 15 },
+    { "id": "left elbow", "size": 10 },
+    { "id": "right elbow", "size": 10 },
+    { "id": "left hand", "size": 15 },
+    { "id": "right hand", "size": 15 },
+    { "id": "torso", "size": 35 },
+    { "id": "left hip", "size": 20 },
+    { "id": "right hip", "size": 20 },
+    { "id": "left knee", "size": 15 },
+    { "id": "right knee", "size": 15 },
+    { "id": "left foot", "size": 17 },
+    { "id": "right foot", "size": 17 }
+  ],
+
+  "links": [
+    { "source": "head", "target": "chest", "length": 75 },
+    { "source": "left shoulder", "target": "chest", "length": 20 },
+    { "source": "right shoulder", "target": "chest", "length": 20 },
+    { "source": "left elbow", "target": "left shoulder" },
+    { "source": "right elbow", "target": "right shoulder" },
+    { "source": "left hand", "target": "left elbow" },
+    { "source": "right hand", "target": "right elbow" },
+    { "source": "chest", "target": "torso" },
+    { "source": "left hip", "target": "torso", "length": 15 },
+    { "source": "right hip", "target": "torso", "length": 15 },
+    { "source": "left knee", "target": "left hip", "length": 120 },
+    { "source": "right knee", "target": "right hip", "length": 120 },
+    { "source": "left foot", "target": "left knee" },
+    { "source": "right foot", "target": "right knee" }
+  ]
+}

@@ -27,15 +27,17 @@ function Graph(el) {
         }
     };
 
-    this.addLink = function (sourceId, targetId) {
-        var sourceNode = findNode(sourceId);
-        var targetNode = findNode(targetId);
-        var link = { source: sourceNode, target: targetNode};
+    this.addLink = function (link) {
+        link.source = findNode(link.source);
+        link.target = findNode(link.target);
 
-        if ((sourceNode !== undefined) && (targetNode !== undefined)) {
-            links.push(link);
-            update();
-            return link;
+        if ((link.source !== undefined) && (link.target !== undefined)) {
+          links.push(link);
+          update();
+          return link;
+        }
+        else {
+          console.error(new Error(link));
         }
     };
 

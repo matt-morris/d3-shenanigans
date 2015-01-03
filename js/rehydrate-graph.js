@@ -9,7 +9,7 @@ function rehydrateGraph(path, target) {
     });
 
     response.links.map(function(link) {
-      g.addLink(link.source, link.target);
+      g.addLink(link);
     });
   });
 }

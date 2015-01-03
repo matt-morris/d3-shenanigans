@@ -1,6 +1,6 @@
 console.log('force.js');
 
-d3.select('body').append('style')
+d3.select('head').append('style')
   .text('.node {stroke: #fff;stroke-width: 1.5px;}.link {stroke: #999;stroke-opacity:.6;}');
 
 
@@ -49,6 +49,18 @@ function Graph(selector, options) {
         }
     };
 
+    this.addRandomLink = function() {
+      var link = {};
+      if (nodes.length > 1) {
+        link.source = Math.floor(Math.random() * nodes.length);
+        do {
+          link.target = Math.floor(Math.random() * nodes.length);
+        } while (link.source == link.target);
+      }
+      this.addLink(link);
+      return link;
+    };
+
     var findNode = function (id) {
         for (var i=0; i < nodes.length; i++) {
             if (nodes[i].id === id)
@@ -75,7 +87,7 @@ function Graph(selector, options) {
     var force = d3.layout.force()
                   .gravity(0.05)
                   .distance(function(d) { return d.length || 100; })
-                  .charge(-300)
+                  .charge(function(d) { return d.charge || -5; })
                   .size([w, h]);
 
     var nodes = force.nodes(),

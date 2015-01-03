@@ -67,7 +67,7 @@ function Graph(el) {
     var force = d3.layout.force()
                   .gravity(0.05)
                   .distance(100)
-                  .charge(-100)
+                  .charge(-300)
                   .size([w, h]);
 
     var nodes = force.nodes(),

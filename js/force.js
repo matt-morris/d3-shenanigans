@@ -4,12 +4,20 @@ d3.select('body').append('style')
   .text('.node {stroke: #fff;stroke-width: 1.5px;}.link {stroke: #999;stroke-opacity:.6;}');
 
 
-function Graph(el) {
+function Graph(selector, options) {
+    selector = selector || 'body';
+    options = options || {};
+
     this.addNode = function (node) {
       node = node || {};
+      if (typeof node == 'string') {
+        node = { id: node };
+      }
+
       node.id = node.id || nodes.length;
       nodes.push(node);
       update();
+
       return node;
     };
 
@@ -56,11 +64,11 @@ function Graph(el) {
     };
 
     // set up the D3 visualisation in the specified element
-    var w = 960,
-        h = 800;
+    var w = options.width || 960,
+        h = options.height || 800;
 
     var color = d3.scale.category20();
-    var vis = this.vis = d3.select(el).append('svg:svg')
+    var vis = this.vis = d3.select(selector).append('svg:svg')
         .attr('width', w)
         .attr('height', h);
 

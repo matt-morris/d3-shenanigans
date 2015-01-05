@@ -61,6 +61,17 @@ function Graph(selector, options) {
       }
     };
 
+    this.toJSON = function() {
+      return JSON.stringify({
+        nodes: nodes,
+        links: links.map(function(link) {
+          link.source = link.source.id;
+          link.target = link.target.id;
+          return link;
+        })
+      });
+    };
+
     var findNode = function (id) {
         for (var i=0; i < nodes.length; i++) {
             if (nodes[i].id === id)

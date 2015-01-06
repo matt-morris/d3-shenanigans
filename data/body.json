@@ -19,8 +19,8 @@
 
   "links": [
     { "source": "head", "target": "chest", "length": 75 },
-    { "source": "left shoulder", "target": "chest", "length": 20 },
-    { "source": "right shoulder", "target": "chest", "length": 20 },
+    { "source": "left shoulder", "target": "chest", "length": 30 },
+    { "source": "right shoulder", "target": "chest", "length": 30 },
     { "source": "left elbow", "target": "left shoulder" },
     { "source": "right elbow", "target": "right shoulder" },
     { "source": "left hand", "target": "left elbow" },

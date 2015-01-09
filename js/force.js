@@ -145,5 +145,14 @@ function Graph(selector, options) {
   };
 
   // Make it all go
+  function resize() {
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    vis.attr("width", width).attr("height", height);
+    force.size([width, height]).resume();
+  }
+
+  resize();
+  d3.select(window).on("resize", resize);
   update();
 }

@@ -6,9 +6,9 @@ console.log('snowman.');
 
 g = new Graph('body');
 
-g.addNode({ id: 'head', size: 40 });
-g.addNode({ id: 'body', size: 75 });
-g.addNode({ id: 'legs', size: 100 });
+g.addNode({ id: 'head', size: 40,  color: '#fff' });
+g.addNode({ id: 'body', size: 75,  color: '#fff' });
+g.addNode({ id: 'legs', size: 100, color: '#fff' });
 
 g.addLink('head', 'body');
 g.addLink('body', 'legs');

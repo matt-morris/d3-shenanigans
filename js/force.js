@@ -72,6 +72,10 @@ function Graph(selector, options) {
       });
     };
 
+    this.findNode = function(id) {
+      return nodes.filter(function(node) { return node.id === id; })[0];
+    };
+
     var findNode = function (id) {
         for (var i=0; i < nodes.length; i++) {
             if (nodes[i].id === id)

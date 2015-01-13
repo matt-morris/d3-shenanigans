@@ -78,6 +78,15 @@ function Graph(selector, options) {
     };
     this.findNode = findNode;
 
+    var replaceNode = function(id, node) {
+      var i = findNode(id);
+      if (i) {
+        nodes[i] = node;
+        update();
+      }
+    };
+    this.replaceNode = replaceNode;
+
     var findNodeIndex = function (id) {
         for (var i=0; i < nodes.length; i++) {
             if (nodes[i].id === id)
@@ -96,12 +105,24 @@ function Graph(selector, options) {
 
     var force = d3.layout.force()
                   .gravity(0.05)
+                  .linkStrength(10)
                   .distance(function(d) { return d.length || 100; })
                   .charge(function(d) { return d.charge || -5; })
                   .size([w, h]);
 
     var nodes = force.nodes(),
         links = force.links();
+
+    var self = this;
+
+    var current;
+
+    vis.on('click', function() {
+      // console.log(d3.event)
+      if (d3.event.altKey && d3.event.target.nodeName != 'circle') {
+        self.addNode();
+      }
+    });
 
     var update = function() {
       var link = vis.selectAll('line.link')
@@ -122,8 +143,17 @@ function Graph(selector, options) {
       nodeEnter.append('circle')
           .attr('class', 'node')
           .attr('r', function(d) { return d.size || 5; })
-          .style('fill', function(d) { return d.color || color(d.id); })
+          // .style('fill', function(d) { return d.color || color(d.id); })
+          // .style('stroke-width', function(d) { return d.selected ? '3px' : '1.5px'; })
+          .style('fill', function(d) { return d.selected ? '#0f0' : color(d.id); })
           .call(force.drag);
+
+      node.on('click', function(d) {
+        current = d;
+        d.selected = ! d.selected;
+        update();
+        console.log(d)
+      });
 
       node.append('title')
           .text(function(d) { return d.id + (d.name ? ': \n' + d.name : ''); });

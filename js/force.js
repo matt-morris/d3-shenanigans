@@ -145,14 +145,16 @@ function Graph(selector, options) {
           .attr('r', function(d) { return d.size || 5; })
           // .style('fill', function(d) { return d.color || color(d.id); })
           // .style('stroke-width', function(d) { return d.selected ? '3px' : '1.5px'; })
-          .style('fill', function(d) { return d.selected ? '#0f0' : color(d.id); })
+          // .attr('fill', function(d) { return d.selected ? '#0f0' : color(d.id); })
           .call(force.drag);
+
+      node.attr('fill', function(d) { return d.selected ? '#0f0' : color(d.id); });
 
       node.on('click', function(d) {
         current = d;
         d.selected = ! d.selected;
         update();
-        console.log(d)
+        // console.log(d)
       });
 
       node.append('title')

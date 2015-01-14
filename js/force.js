@@ -3,7 +3,6 @@ console.log('force.js');
 d3.select('head').append('style')
   .text('.node {stroke: #fff;stroke-width: 1.5px;}.link {stroke: #999;stroke-opacity:.6;}');
 
-
 function Graph(selector, options) {
     selector = selector || 'body';
     options = options || {};
@@ -21,32 +20,32 @@ function Graph(selector, options) {
       return node;
     };
 
-    this.removeNode = function (id) {
-        var i = 0;
-        var n = findNode(id);
-        while (i < links.length) {
-          if ((links[i]['source'] === n) || (links[i]['target'] == n)) links.splice(i, 1);
-          else i++;
-        }
-        var index = findNodeIndex(id);
-        if (index !== undefined) {
-          nodes.splice(index, 1);
-          update();
-        }
+    this.removeNode = function(id) {
+      var i = 0;
+      var n = findNode(id);
+      while (i < links.length) {
+        if ((links[i]['source'] === n) || (links[i]['target'] == n)) links.splice(i, 1);
+        else i++;
+      }
+      var index = findNodeIndex(id);
+      if (index !== undefined) {
+        nodes.splice(index, 1);
+        update();
+      }
     };
 
     this.addLink = function (link) {
-        link.source = findNode(link.source);
-        link.target = findNode(link.target);
+      link.source = findNode(link.source);
+      link.target = findNode(link.target);
 
-        if ((link.source !== undefined) && (link.target !== undefined)) {
-          links.push(link);
-          update();
-          return link;
-        }
-        else {
-          console.error(new Error(link));
-        }
+      if ((link.source !== undefined) && (link.target !== undefined)) {
+        links.push(link);
+        update();
+        return link;
+      }
+      else {
+        console.error(new Error(link));
+      }
     };
 
     this.addRandomLink = function() {
@@ -72,7 +71,6 @@ function Graph(selector, options) {
       });
     };
 
-
     var findNode = function (id) {
       return nodes.filter(function(node) { return node.id === id; })[0];
     };
@@ -89,8 +87,8 @@ function Graph(selector, options) {
 
     var findNodeIndex = function (id) {
         for (var i=0; i < nodes.length; i++) {
-            if (nodes[i].id === id)
-                return i;
+          if (nodes[i].id === id)
+            return i;
         }
     };
 
@@ -143,9 +141,6 @@ function Graph(selector, options) {
       nodeEnter.append('circle')
           .attr('class', 'node')
           .attr('r', function(d) { return d.size || 5; })
-          // .style('fill', function(d) { return d.color || color(d.id); })
-          // .style('stroke-width', function(d) { return d.selected ? '3px' : '1.5px'; })
-          // .attr('fill', function(d) { return d.selected ? '#0f0' : color(d.id); })
           .call(force.drag);
 
       node.attr('fill', function(d) { return d.selected ? '#0f0' : color(d.id); });
@@ -154,7 +149,6 @@ function Graph(selector, options) {
         current = d;
         d.selected = ! d.selected;
         update();
-        // console.log(d)
       });
 
       node.append('title')

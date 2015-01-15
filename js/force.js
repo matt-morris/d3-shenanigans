@@ -141,15 +141,15 @@ function Graph(selector, options) {
       nodeEnter.append('circle')
           .attr('class', 'node')
           .attr('r', function(d) { return d.size || 5; })
-          .call(force.drag);
+          .call(force.drag)
+          .on('click', function(d) {
+            current = d;
+            d.selected = ! d.selected;
+            update();
+          });
 
       node.attr('fill', function(d) { return d.selected ? '#0f0' : color(d.id); });
 
-      node.on('click', function(d) {
-        current = d;
-        d.selected = ! d.selected;
-        update();
-      });
 
       node.append('title')
           .text(function(d) { return d.id + (d.name ? ': \n' + d.name : ''); });

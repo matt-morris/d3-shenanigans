@@ -177,6 +177,14 @@ function Graph(selector, options) {
     force.size([width, height]).resume();
   }
 
+  d3.select(document).on('keypress', function() {
+    if (current && d3.event.which === 100) {
+      self.removeNode(current.id);
+      current = undefined;
+      update();
+    }
+  });
+
   resize();
   d3.select(window).on("resize", resize);
   update();

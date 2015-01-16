@@ -71,6 +71,14 @@ function Graph(selector, options) {
     });
   };
 
+  this.nodesWhere = function(q) {
+    var keys = Object.keys(q);
+    return nodes.filter(function(node) {
+      return keys.filter(function(key) {
+        return node[key] == q[key]; }).length === keys.length;
+    });
+  };
+
   var findNode = function(id) {
     return nodes.filter(function(node) { return node.id === id; })[0];
   };

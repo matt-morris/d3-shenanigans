@@ -79,6 +79,14 @@ function Graph(selector, options) {
     });
   };
 
+  this.linksWhere = function(q) {
+    var keys = Object.keys(q);
+    return links.filter(function(link) {
+      return keys.filter(function(key) {
+        return link[key] == q[key]; }).length === keys.length;
+    });
+  };
+
   var findNode = function(id) {
     return nodes.filter(function(node) { return node.id === id; })[0];
   };

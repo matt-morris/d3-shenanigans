@@ -7,7 +7,7 @@ function Graph(selector, options) {
   selector = selector || 'body';
   options = options || {};
 
-  this.addNode = function (node) {
+  this.addNode = function(node) {
     node = node || {};
     if (typeof node == 'string') {
       node = { id: node };
@@ -34,7 +34,7 @@ function Graph(selector, options) {
     }
   };
 
-  this.addLink = function (link) {
+  this.addLink = function(link) {
     link.source = findNode(link.source);
     link.target = findNode(link.target);
 
@@ -71,7 +71,7 @@ function Graph(selector, options) {
     });
   };
 
-  var findNode = function (id) {
+  var findNode = function(id) {
     return nodes.filter(function(node) { return node.id === id; })[0];
   };
   this.findNode = findNode;
@@ -85,11 +85,11 @@ function Graph(selector, options) {
   };
   this.replaceNode = replaceNode;
 
-  var findNodeIndex = function (id) {
-      for (var i=0; i < nodes.length; i++) {
-        if (nodes[i].id === id)
-          return i;
-      }
+  var findNodeIndex = function(id) {
+    for (var i=0; i < nodes.length; i++) {
+      if (nodes[i].id === id)
+        return i;
+    }
   };
 
   // set up the D3 visualisation in the specified element

@@ -178,10 +178,9 @@ function Graph(selector, options) {
   }
 
   d3.select(document).on('keypress', function() {
-    if (current && d3.event.which === 100) {
-      self.removeNode(current.id);
-      current = undefined;
-      update();
+    if (d3.event.which === 100) {
+      nodes.filter(function(node) { return node.selected; })
+           .map(function(node) { self.removeNode(node.id); });
     }
   });
 

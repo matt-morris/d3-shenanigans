@@ -193,10 +193,42 @@ function Graph(selector, options) {
     force.size([width, height]).resume();
   }
 
+  var reticle;
+  var mouse = { x: 0, y: 0, prevX: 0, prevY: 0 };
+  d3.select(document).on('mousemove', function() {
+    mouse.prevX = mouse.x;
+    mouse.prevY = mouse.y;
+    mouse.x = d3.event.x;
+    mouse.y = d3.event.y;
+
+    if (reticle) {
+      reticle.attr('cx', mouse.x - 9).attr('cy', mouse.y - 9);
+    }
+  });
+
+  function toggleReticle() {
+    if (reticle) {
+      reticle.remove();
+      reticle = undefined;
+    }
+    else {
+      reticle = vis.append('circle')
+                   .attr('r', 20)
+                   .attr('cx', mouse.x)
+                   .attr('cy', mouse.y)
+                   .style('stroke-width', '2px')
+                   .style('stroke', '#000')
+                   .style('fill', 'rgba(255,255,255,0.5)');
+    }
+  }
+
   d3.select(document).on('keypress', function() {
     if (d3.event.which === 100) {
       nodes.filter(function(node) { return node.selected; })
            .map(function(node) { self.removeNode(node.id); });
+    }
+    else if (d3.event.which === 122) {
+      toggleReticle();
     }
   });
 

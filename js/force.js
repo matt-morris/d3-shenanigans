@@ -198,6 +198,7 @@ function Graph(selector, options) {
     // Restart the force layout.
     force.start();
   };
+  this.update = update;
 
   // Make it all go
   function resize() {

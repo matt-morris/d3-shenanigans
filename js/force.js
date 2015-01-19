@@ -238,6 +238,10 @@ function Graph(selector, options) {
       reticle.on('click', function() {
         var point = d3.mouse(this);
 
+        if (d3.event.metaKey) {
+          self.addNode({ x: point[0], y: point[1] });
+        }
+
         var targets = nodes.filter(function(target) {
           var x = target.x - point[0],
               y = target.y - point[1];

@@ -131,6 +131,20 @@ function Graph(selector, options) {
 
   var current;
 
+  var joinSelected = function() {
+    var selected = self.nodesWhere({ selected: true });
+
+    selected.map(function(source) {
+      selected.map(function(target) {
+        if (target !== selected) {
+          links.push({ source: source, target: target });
+        }
+      });
+    });
+
+    update();
+  };
+
   vis.on('click', function() {
     // console.log(d3.event)
     if (d3.event.altKey && d3.event.target.nodeName != 'circle') {

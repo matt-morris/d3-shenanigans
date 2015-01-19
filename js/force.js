@@ -257,14 +257,30 @@ function Graph(selector, options) {
     }
   }
 
-  d3.select(document).on('keypress', function() {
-    if (d3.event.which === 100) {
-      nodes.filter(function(node) { return node.selected; })
-           .map(function(node) { self.removeNode(node.id); });
-    }
-    else if (d3.event.which === 122) {
-      toggleReticle();
-    }
+  d3.select(document).on('keyup', function() {
+    switch (d3.event.which) {
+      case 65: // a
+        self.addNode();
+        break;
+      case 68:
+        self.nodesWhere({ selected: true })
+            .map(function(node) { self.removeNode(node.id); });
+        break;
+      case 90: // z
+        toggleReticle();
+        break;
+      case 74: // j
+        joinSelected();
+        break;
+      case 27:
+        self.nodesWhere({ selected: true }).map(function(node) {
+          node.selected = false;
+        });
+        update();
+        break;
+      default:
+        console.log(d3.event.which, d3.event);
+      }
   });
 
   resize();

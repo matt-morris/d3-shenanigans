@@ -219,6 +219,26 @@ function Graph(selector, options) {
                    .style('stroke-width', '2px')
                    .style('stroke', '#000')
                    .style('fill', 'rgba(255,255,255,0.5)');
+
+      reticle.on('click', function() {
+        var point = d3.mouse(this);
+
+        var targets = nodes.filter(function(target) {
+          var x = target.x - point[0],
+              y = target.y - point[1];
+          return Math.sqrt(x * x + y * y) < 20;
+        });
+
+        targets.map(function(source) {
+          targets.map(function(target) {
+            if (source !== target) {
+              links.push({ source: source, target: target });
+            }
+          });
+        });
+
+        update();
+      });
     }
   }
 

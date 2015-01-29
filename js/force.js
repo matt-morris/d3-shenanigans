@@ -172,7 +172,11 @@ function Graph(selector, options) {
         .attr('class', 'node')
         .attr('r', function(d) { return d.size || 5; })
         .call(force.drag)
+        .on('dragend', function(d) {
+          d3.event.preventDefault();
+        })
         .on('click', function(d) {
+          if (d3.event.defaultPrevented) { return; }
           current = d;
           d.selected = ! d.selected;
           update();

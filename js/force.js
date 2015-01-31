@@ -192,7 +192,6 @@ function Graph(selector, options) {
           if (d3.event.shiftKey) { d.fixed = true; }
         });
 
-    node.attr('fill', function(d) { return d.selected ? '#0f0' : color(d.id); });
     d3.select(document).on('keydown.disable_drag', function() {
       if (d3.event.which === 91) {
         d3.selectAll('.node').on('mousedown.drag', null)
@@ -203,6 +202,8 @@ function Graph(selector, options) {
       }
     })
 
+    node.attr('r', function(d) { return d.size || 5; })
+        .attr('fill', function(d) { return d.selected ? '#0f0' : color(d.id); });
 
     node.append('title')
         .text(function(d) { return d.id + (d.name ? ': \n' + d.name : ''); });

@@ -306,7 +306,7 @@ function Graph(selector, options) {
         update();
         break;
       default:
-        console.log(d3.event.which, d3.event);
+        // console.log(d3.event.which, d3.event);
       }
   });
 

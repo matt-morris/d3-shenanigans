@@ -191,6 +191,12 @@ function Graph(selector, options) {
           current = d;
           d.selected = ! d.selected;
           update();
+        })
+        .on('mouseenter.resize', function(d) {
+          d3.select(this).transition(150).attr('r', (d.size || 0) + 7);
+        })
+        .on('mouseout.resize', function(d) {
+          d3.select(this).transition(250).attr('r', (d.size || 7) - 2);
         });
 
     node.attr('fill', function(d) { return d.selected ? '#0f0' : color(d.id); });

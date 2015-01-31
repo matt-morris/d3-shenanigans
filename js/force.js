@@ -161,31 +161,18 @@ function Graph(selector, options) {
 
     link.exit().remove();
 
-    var drag = force.drag()
-                    .on('dragstart', function(d) {
-                      if (d3.event.sourceEvent.metaKey) {
-                        return;
-                      }
-                    })
-                    .on('drag', function(d) {
-                      if (d3.event.sourceEvent.metaKey) {
-                        return;
-                      }
-                    })
-                    .on('dragend', function(d) {
-                    });
+    var drag = force.drag();
 
     var node = vis.selectAll('g.node')
                   .data(nodes, function(d) { return d.id; });
 
     var nodeEnter = node.enter().append('g')
                         .attr('class', 'node')
-                        .call(force.drag);
+                        .call(drag);
 
     nodeEnter.append('circle')
         .attr('class', 'node')
         .attr('r', function(d) { return d.size || 5; })
-        .call(drag)
         .on('click', function(d) {
           if (d3.event.defaultPrevented) { return; }
           current = d;

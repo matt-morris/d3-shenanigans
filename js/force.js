@@ -193,6 +193,15 @@ function Graph(selector, options) {
         });
 
     node.attr('fill', function(d) { return d.selected ? '#0f0' : color(d.id); });
+    d3.select(document).on('keydown.disable_drag', function() {
+      if (d3.event.which === 16) {
+        d3.selectAll('.node').on('mousedown.drag', null)
+      }
+    }).on('keyup.enable_drag', function() {
+      if (d3.event.which === 16) {
+        d3.selectAll('.node').call(drag);
+      }
+    })
 
 
     node.append('title')

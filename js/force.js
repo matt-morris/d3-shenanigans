@@ -192,11 +192,17 @@ function Graph(selector, options) {
           d.selected = ! d.selected;
           update();
         })
+        .on('dblclick', function(d) {
+          d.fixed = false;
+        })
         .on('mouseenter.resize', function(d) {
           d3.select(this).transition(150).attr('r', (d.size || 0) + 7);
         })
         .on('mouseout.resize', function(d) {
           d3.select(this).transition(250).attr('r', (d.size || 7) - 2);
+        })
+        .on('mouseup', function(d) {
+          if (d3.event.shiftKey) { d.fixed = true; }
         });
 
     node.attr('fill', function(d) { return d.selected ? '#0f0' : color(d.id); });

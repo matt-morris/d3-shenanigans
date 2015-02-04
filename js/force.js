@@ -9,7 +9,7 @@ function Graph(selector, options) {
 
   this.addNode = function(node) {
     node = node || {};
-    if (typeof node == 'string') {
+    if (typeof node === 'string') {
       node = { id: node };
     }
 

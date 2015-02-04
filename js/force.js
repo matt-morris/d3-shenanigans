@@ -54,7 +54,7 @@ function Graph(selector, options) {
       link.source = Math.floor(Math.random() * nodes.length);
       do {
         link.target = Math.floor(Math.random() * nodes.length);
-      } while (link.source == link.target);
+      } while (link.source === link.target);
       this.addLink(link);
       return link;
     }

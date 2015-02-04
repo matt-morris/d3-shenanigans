@@ -24,7 +24,7 @@ function Graph(selector, options) {
     var i = 0;
     var n = findNode(id);
     while (i < links.length) {
-      if ((links[i]['source'] === n) || (links[i]['target'] == n)) links.splice(i, 1);
+      if ((links[i]['source'] === n) || (links[i]['target'] === n)) links.splice(i, 1);
       else i++;
     }
     var index = findNodeIndex(id);

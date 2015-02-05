@@ -118,7 +118,7 @@ function Graph(selector, options) {
 
   var force = d3.layout.force()
                 .gravity(0.05)
-                .linkStrength(10)
+                .linkStrength(function(d) { return d.strength || 10; })
                 .distance(function(d) { return d.length || 20; })
                 .charge(function(d) { return d.charge || -5; })
                 .size([w, h]);

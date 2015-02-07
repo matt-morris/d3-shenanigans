@@ -102,9 +102,10 @@ function Graph(selector, options) {
   this.replaceNode = replaceNode;
 
   var findNodeIndex = function(id) {
-    return nodes.filter(function(node, i) {
-      return i === id;
-    })[0];
+    for (var i=0; i < nodes.length; i++) {
+      if (nodes[i].id === id)
+        return i;
+    }
   };
 
   // set up the D3 visualisation in the specified element

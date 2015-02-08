@@ -202,7 +202,7 @@ function Graph(selector, options) {
     })
 
     node.attr('r', function(d) { return d.size || 5; })
-        .attr('fill', function(d) { return d.selected ? '#0f0' : color(d.id); });
+        .attr('fill', function(d) { return d.selected ? '#0f0' : d.color || color(d.id); });
 
     node.append('title')
         .text(function(d) { return d.id + (d.name ? ': \n' + d.name : ''); });

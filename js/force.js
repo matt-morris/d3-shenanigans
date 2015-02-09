@@ -174,9 +174,14 @@ function Graph(selector, options) {
         .attr('r', function(d) { return d.size || 5; })
         .on('click', function(d) {
           if (d3.event.defaultPrevented) { return; }
-          current = d;
-          d.selected = ! d.selected;
-          update();
+          if (d3.event.metaKey) {
+            togglePropertyEditor(d);
+          }
+          else {
+            current = d;
+            d.selected = ! d.selected;
+            update();
+          }
         })
         .on('dblclick.unfreeze', function(d) {
           d.fixed = false;
@@ -229,6 +234,29 @@ function Graph(selector, options) {
     var height = window.innerHeight;
     vis.attr("width", width).attr("height", height);
     force.size([width, height]).resume();
+  }
+
+  function togglePropertyEditor(node) {
+    var editor = d3.select('body').append('div')
+                   .style('position', 'absolute')
+                   .style('top', (d3.event.pageX + 10) + 'px')
+                   .style('left', (d3.event.pageY + 10) +'px')
+                   .style('border', '3px solid black')
+                   .style('border-radius', '10px')
+                   .style('padding', '5px');
+
+    editor.append('label').text(node.id + ':')
+          .append('br');
+
+    Object.keys(node).map(function(key) {
+      editor.append('input')
+            .attr('type', 'text')
+            .attr('value', key);
+
+      editor.append('input')
+            .attr('type', 'text')
+            .attr('value', node[key]);
+    });
   }
 
   var reticle;

@@ -255,8 +255,29 @@ function Graph(selector, options) {
 
       editor.append('input')
             .attr('type', 'text')
-            .attr('value', node[key]);
+            .attr('value', node[key])
+            .on('keyup.edit', function() {
+              if (d3.event.which === 13) {
+                node[key] = this.value;
+                update();
+              }
+            });
     });
+
+    var newKey = editor.append('input').attr('type', 'text');
+
+    editor.append('input')
+          .attr('type', 'text')
+          .on('keyup.editNew', function() {
+            if (d3.event.which === 13) {
+              node[newKey[0][0].value] = this.value;
+              update();
+            }
+          });
+
+    editor.append('input').attr('type', 'button')
+          .attr('value', 'X')
+          .on('click.closeEditor', function() { editor.remove(); });
   }
 
   var reticle;

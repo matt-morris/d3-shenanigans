@@ -257,9 +257,15 @@ function Graph(selector, options) {
             .attr('type', 'text')
             .attr('value', node[key])
             .on('keyup.edit', function() {
-              if (d3.event.which === 13) {
-                node[key] = this.value;
-                update();
+              switch (d3.event.which) {
+                case 13:
+                  node[key] = this.value;
+                  update();
+                  break;
+                case 27:
+                  editor.remove();
+                  break;
+                default:
               }
               d3.event.stopPropagation();
             });

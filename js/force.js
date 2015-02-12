@@ -261,6 +261,7 @@ function Graph(selector, options) {
                 node[key] = this.value;
                 update();
               }
+              d3.event.stopPropagation();
             });
     });
 
@@ -273,6 +274,7 @@ function Graph(selector, options) {
               node[newKey[0][0].value] = this.value;
               update();
             }
+            d3.event.stopPropagation();
           });
 
     editor.append('input').attr('type', 'button')

@@ -198,13 +198,13 @@ function Graph(selector, options) {
 
     d3.select(document).on('keydown.disable_drag', function() {
       if (d3.event.which === 91) {
-        d3.selectAll('.node').on('mousedown.drag', null)
+        d3.selectAll('.node').on('mousedown.drag', null);
       }
     }).on('keyup.enable_drag', function() {
       if (d3.event.which === 91) {
         d3.selectAll('.node').call(drag);
       }
-    })
+    });
 
     node.attr('r', function(d) { return d.size || 5; })
         .attr('fill', function(d) { return d.selected ? '#0f0' : d.color || color(d.id); });

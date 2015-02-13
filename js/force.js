@@ -302,6 +302,8 @@ function Graph(selector, options) {
     editor.append('input').attr('type', 'button')
           .attr('value', 'X')
           .on('click.closeEditor', function() { editor.remove(); });
+
+    d3.select(newKey)[0][0][0][0].focus();
   }
 
   var reticle;

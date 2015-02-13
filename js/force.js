@@ -251,7 +251,8 @@ function Graph(selector, options) {
     Object.keys(node).map(function(key) {
       editor.append('input')
             .attr('type', 'text')
-            .attr('value', key);
+            .attr('value', key)
+            .attr('disabled', true);
 
       editor.append('input')
             .attr('type', 'text')

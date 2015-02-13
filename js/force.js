@@ -277,7 +277,7 @@ function Graph(selector, options) {
 
     editor.append('input')
           .attr('type', 'text')
-          .on('keyup.editNew', function() {;
+          .on('keyup.editNew', function() {
             switch (d3.event.which) {
               case 13:
                 node[newKey[0][0].value] = this.value;

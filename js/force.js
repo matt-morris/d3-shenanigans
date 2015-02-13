@@ -273,7 +273,15 @@ function Graph(selector, options) {
     });
 
     var newKey = editor.append('input').attr('type', 'text')
-                       .on('keyup.editNew', function() { d3.event.stopPropagation(); });
+                       .on('keyup.editNew', function() {
+                          switch (d3.event.which) {
+                            case 27:
+                              editor.remove();
+                              break;
+                            default:
+                          }
+                          d3.event.stopPropagation();
+                        });
 
     editor.append('input')
           .attr('type', 'text')

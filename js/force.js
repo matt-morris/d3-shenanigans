@@ -364,7 +364,6 @@ function Graph(selector, options) {
       case 65:
         if (d3.event.metaKey) {
           nodes.map(function(node) {
-            console.log(node)
             node.selected = true;
           });
           update();
@@ -373,7 +372,7 @@ function Graph(selector, options) {
       default:
         //
     }
-  })
+  });
 
   d3.select(document).on('keyup', function() {
     switch (d3.event.which) {

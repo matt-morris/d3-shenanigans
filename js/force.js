@@ -359,10 +359,31 @@ function Graph(selector, options) {
     }
   }
 
+  d3.select(document).on('keydown', function() {
+    switch (d3.event.which) {
+      case 65:
+        if (d3.event.metaKey) {
+          nodes.map(function(node) {
+            console.log(node)
+            node.selected = true;
+          });
+          update();
+        }
+        break;
+      default:
+        //
+    }
+  })
+
   d3.select(document).on('keyup', function() {
     switch (d3.event.which) {
       case 65: // a
-        self.addNode();
+        if (d3.event.metaKey) {
+          //
+        }
+        else {
+          self.addNode();
+        }
         break;
       case 68:
         self.nodesWhere({ selected: true })

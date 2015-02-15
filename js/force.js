@@ -377,10 +377,7 @@ function Graph(selector, options) {
   d3.select(document).on('keyup', function() {
     switch (d3.event.which) {
       case 65: // a
-        if (d3.event.metaKey) {
-          //
-        }
-        else {
+        if (!d3.event.metaKey) {
           self.addNode();
         }
         break;

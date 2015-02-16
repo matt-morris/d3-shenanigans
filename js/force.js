@@ -194,6 +194,15 @@ function Graph(selector, options) {
         })
         .on('mouseup.freeze', function(d) {
           if (d3.event.shiftKey) { d.fixed = true; }
+        })
+        .on('mousedown.start_link', function(d) {
+          current = d;
+        })
+        .on('mouseup.complete_link', function(d) {
+          if (current) {
+            self.addLink({ source: current.id, target: d.id });
+          }
+          current = null;
         });
 
     d3.select(document).on('keydown.disable_drag', function() {

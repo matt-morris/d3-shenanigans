@@ -1,8 +1,5 @@
 console.log('force.js');
 
-d3.select('head').append('style')
-  .text('.node {stroke: #fff;stroke-width: 1.5px;}.link {stroke: #999;stroke-opacity:.6;}');
-
 function Graph(selector, options) {
   selector = selector || 'body';
   options = options || {};
@@ -121,7 +118,7 @@ function Graph(selector, options) {
                 .gravity(0.05)
                 .linkStrength(function(d) { return d.strength || 10; })
                 .distance(function(d) { return d.length || 20; })
-                .charge(function(d) { return d.charge || -5; })
+                .charge(function(d) { return d.charge || -15; })
                 .size([w, h]);
 
   var nodes = force.nodes(),
@@ -156,7 +153,9 @@ function Graph(selector, options) {
                   .data(links, function(d) { return d.source.id + '-' + d.target.id; });
 
     link.enter().insert('line')
-        .attr('class', 'link');
+        .attr('class', 'link')
+        .attr('stroke-width', '1.5px')
+        .attr('stroke', '#0f0');
 
     link.exit().remove();
 
@@ -171,6 +170,8 @@ function Graph(selector, options) {
 
     nodeEnter.append('circle')
         .attr('class', 'node')
+        .attr('stroke', '#0f0')
+        .attr('stroke-width', '1.5px')
         .attr('r', function(d) { return d.size || 5; })
         .on('click', function(d) {
           if (d3.event.defaultPrevented) { return; }
@@ -216,7 +217,8 @@ function Graph(selector, options) {
     });
 
     node.attr('r', function(d) { return d.size || 5; })
-        .attr('fill', function(d) { return d.selected ? '#0f0' : d.color || color(d.id); });
+        // .attr('fill', function(d) { return d.selected ? '#0f0' : d.color || color(d.id); });
+        .attr('fill', function(d) { return d.selected ? '#0f0' : d.color || '#222'; });
 
     node.append('title')
         .text(function(d) { return d.id + (d.name ? ': \n' + d.name : ''); });

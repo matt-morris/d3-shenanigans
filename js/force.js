@@ -187,10 +187,10 @@ function Graph(selector, options) {
         .on('dblclick.unfreeze', function(d) {
           d.fixed = false;
         })
-        .on('mouseenter.resize', function(d) {
+        .on('mouseenter.hover', function(d) {
           d3.select(this).transition(150).attr('r', (d.size || 0) + 7);
         })
-        .on('mouseout.resize', function(d) {
+        .on('mouseout.hover', function(d) {
           d3.select(this).transition(250).attr('r', (d.size || 7) - 2);
         })
         .on('mouseup.freeze', function(d) {

@@ -188,10 +188,10 @@ function Graph(selector, options) {
           d.fixed = false;
         })
         .on('mouseenter.hover', function(d) {
-          d3.select(this).transition(150).attr('r', (d.size || 0) + 7);
+          d3.select(this).transition(150).attr('r', parseInt((d.size || 0), 10) + 7);
         })
         .on('mouseout.hover', function(d) {
-          d3.select(this).transition(250).attr('r', (d.size || 7) - 2);
+          d3.select(this).transition(250).attr('r', parseInt((d.size || 7), 10) - 2);
         })
         .on('mouseup.freeze', function(d) {
           if (d3.event.shiftKey) { d.fixed = true; }

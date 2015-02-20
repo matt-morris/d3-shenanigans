@@ -135,6 +135,7 @@ function Graph(selector, options) {
   vis.on('mouseup.select_box', function() {
     if (selectBox) {
       selectBox.remove();
+      selectBox = null;
     }
   });
 

@@ -136,7 +136,7 @@ function Graph(selector, options) {
     if (selectBox) {
       selectBox.remove();
     }
-  })
+  });
 
   var force = d3.layout.force()
                 .gravity(0.05)

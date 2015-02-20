@@ -134,6 +134,15 @@ function Graph(selector, options) {
 
   vis.on('mouseup.select_box', function() {
     if (selectBox) {
+      nodes.filter(function(node) {
+        var minX = selectBox[0][0].x.baseVal.value;
+        var minY = selectBox[0][0].y.baseVal.value;
+        var maxX = minX + selectBox[0][0].width.baseVal.value;
+        var maxY = minY + selectBox[0][0].height.baseVal.value;
+        if (node.x >= minX && node.x <= maxX &&
+            node.y >= minY && node.y <= maxY) { node.selected = true; }
+        update();
+      });
       selectBox.remove();
       selectBox = null;
     }

@@ -114,6 +114,30 @@ function Graph(selector, options) {
       .attr('width', w)
       .attr('height', h);
 
+  var selectBox;
+  vis.on('mousedown.select_box', function() {
+    selectBox = vis.append('svg:rect')
+                   .attr('x', d3.event.pageX + 'px')
+                   .attr('y', d3.event.pageY + 'px')
+                   .attr('width', 1 + 'px')
+                   .attr('height', 1 + 'px')
+                   .attr('stroke', '#0f0')
+                   .attr('fill', 'rgba(0, 255, 0, 0.4)');
+  });
+
+  vis.on('mousemove.select_box', function() {
+    if (selectBox) {
+      selectBox.attr('width', d3.event.pageX - selectBox[0][0].x.baseVal.value);
+      selectBox.attr('height', d3.event.pageY - selectBox[0][0].y.baseVal.value);
+    }
+  });
+
+  vis.on('mouseup.select_box', function() {
+    if (selectBox) {
+      selectBox.remove();
+    }
+  })
+
   var force = d3.layout.force()
                 .gravity(0.05)
                 .linkStrength(function(d) { return d.strength || 10; })

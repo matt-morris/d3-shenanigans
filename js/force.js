@@ -119,8 +119,6 @@ function Graph(selector, options) {
     selectBox = vis.append('svg:rect')
                    .attr('x', d3.event.pageX + 'px')
                    .attr('y', d3.event.pageY + 'px')
-                   .attr('width', 1 + 'px')
-                   .attr('height', 1 + 'px')
                    .attr('stroke', '#0f0')
                    .attr('fill', 'rgba(0, 255, 0, 0.4)');
   });

@@ -178,7 +178,7 @@ function Graph(selector, options) {
 
   vis.on('click', function() {
     if (d3.event.altKey && d3.event.target.nodeName !== 'circle') {
-      self.addNode({ x: d3.event.x, y: d3.event.y, fixed: true });
+      self.addNode({ x: d3.event.pageX - 10, y: d3.event.pageY - 10, fixed: true });
     }
   });
 

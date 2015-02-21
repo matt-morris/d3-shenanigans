@@ -116,11 +116,13 @@ function Graph(selector, options) {
 
   var selectBox;
   vis.on('mousedown.select_box', function() {
-    selectBox = vis.append('svg:rect')
-                   .attr('x', d3.event.pageX + 'px')
-                   .attr('y', d3.event.pageY + 'px')
-                   .attr('stroke', '#0f0')
-                   .attr('fill', 'rgba(0, 255, 0, 0.4)');
+    if (d3.event.target.nodeName !== 'circle') {
+      selectBox = vis.append('svg:rect')
+                     .attr('x', d3.event.pageX + 'px')
+                     .attr('y', d3.event.pageY + 'px')
+                     .attr('stroke', '#0f0')
+                     .attr('fill', 'rgba(0, 255, 0, 0.4)');
+    }
   });
 
   vis.on('mousemove.select_box', function() {

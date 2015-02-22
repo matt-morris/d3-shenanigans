@@ -114,12 +114,14 @@ function Graph(selector, options) {
       .attr('width', w)
       .attr('height', h);
 
+  var selectStart;
   var selectBox;
   vis.on('mousedown.select_box', function() {
     if (d3.event.target.nodeName !== 'circle') {
+      selectStart = { x: d3.event.pageX - 10, y: d3.event.pageY - 10 }
       selectBox = vis.append('svg:rect')
-                     .attr('x', d3.event.pageX - 10 + 'px')
-                     .attr('y', d3.event.pageY - 10 + 'px')
+                     .attr('x', selectStart.x + 'px')
+                     .attr('y', selectStart.y + 'px')
                      .attr('stroke', '#0f0')
                      .attr('fill', 'rgba(0, 255, 0, 0.4)');
     }
@@ -127,8 +129,16 @@ function Graph(selector, options) {
 
   vis.on('mousemove.select_box', function() {
     if (selectBox) {
-      selectBox.attr('width', d3.event.pageX - 10 - selectBox[0][0].x.baseVal.value);
-      selectBox.attr('height', d3.event.pageY - 10 - selectBox[0][0].y.baseVal.value);
+      var selectionWidth = Math.abs((d3.event.pageX - 10) - selectStart.x);
+      var selectionHeight = Math.abs((d3.event.pageY - 10) - selectStart.y);
+      if (d3.event.pageX - 10 < selectStart.x) {
+        selectBox.attr('x', selectStart.x - selectionWidth + 'px');
+      }
+      if (d3.event.pageY - 10 < selectStart.y) {
+        selectBox.attr('y', selectStart.y - selectionHeight + 'px')
+      }
+      selectBox.attr('width', selectionWidth + 'px');
+      selectBox.attr('height', selectionHeight + 'px');
     }
   });
 
@@ -145,6 +155,7 @@ function Graph(selector, options) {
       });
       selectBox.remove();
       selectBox = null;
+      selectStart = null;
     }
   });
 

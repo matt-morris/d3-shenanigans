@@ -118,7 +118,7 @@ function Graph(selector, options) {
   var selectBox;
   vis.on('mousedown.select_box', function() {
     if (d3.event.target.nodeName !== 'circle') {
-      selectStart = { x: d3.event.pageX - 10, y: d3.event.pageY - 10 }
+      selectStart = { x: d3.event.pageX - 10, y: d3.event.pageY - 10 };
       selectBox = vis.append('svg:rect')
                      .attr('x', selectStart.x + 'px')
                      .attr('y', selectStart.y + 'px')
@@ -135,7 +135,7 @@ function Graph(selector, options) {
         selectBox.attr('x', selectStart.x - selectionWidth + 'px');
       }
       if (d3.event.pageY - 10 < selectStart.y) {
-        selectBox.attr('y', selectStart.y - selectionHeight + 'px')
+        selectBox.attr('y', selectStart.y - selectionHeight + 'px');
       }
       selectBox.attr('width', selectionWidth + 'px');
       selectBox.attr('height', selectionHeight + 'px');

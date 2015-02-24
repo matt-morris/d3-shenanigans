@@ -72,7 +72,25 @@ function Graph(selector, options) {
     var keys = Object.keys(q);
     return nodes.filter(function(node) {
       return keys.filter(function(key) {
-        return node[key].match(q[key]); }).length === keys.length;
+        if (typeof q[key] === 'boolean') {
+          return node[key] == q[key];
+        }
+        else if (typeof q[key] === 'string') {
+          return node[key].match(q[key]);
+        }
+        else if (typeof q[key] === 'number') {
+          return node[key] == q[key];
+        }
+        else if (typeof q[key] === 'object') {
+          // ???
+        }
+        else if (q[key] instanceof RegExp) {
+          return node[key].match(q[key]);
+        }
+        else {
+          console.warn('what case is this?');
+        }
+      }).length === keys.length;
     });
   };
 

@@ -72,7 +72,7 @@ function Graph(selector, options) {
     var keys = Object.keys(q);
     return nodes.filter(function(node) {
       return keys.filter(function(key) {
-        return node[key] == q[key]; }).length === keys.length;
+        return node[key].match(q[key]); }).length === keys.length;
     });
   };
 

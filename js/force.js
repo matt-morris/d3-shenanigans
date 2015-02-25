@@ -9,6 +9,9 @@ function Graph(selector, options) {
     if (typeof node === 'string') {
       node = { id: node };
     }
+    else if (typeof node === 'number') {
+      node = { id: node };
+    }
 
     node.id = node.id || nodes.length;
     nodes.push(node);

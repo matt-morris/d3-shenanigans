@@ -85,7 +85,18 @@ function Graph(selector, options) {
           return node[key] == q[key];
         }
         else if (typeof q[key] === 'object') {
-          // ???
+          if (q[key]['<'] && typeof q[key]['<'] === 'number') {
+            return node[key] < q[key]['<'];
+          }
+          if (q[key]['>'] && typeof q[key]['>'] === 'number') {
+            return node[key] < q[key]['>'];
+          }
+          if (q[key]['>='] && typeof q[key]['>='] === 'number') {
+            return node[key] < q[key]['>='];
+          }
+          if (q[key]['<='] && typeof q[key]['<='] === 'number') {
+            return node[key] < q[key]['<='];
+          }
         }
         else if (q[key] instanceof RegExp) {
           return node[key].match(q[key]);

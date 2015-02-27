@@ -98,6 +98,9 @@ function Graph(selector, options) {
             return node[key] < q[key]['<='];
           }
         }
+        else if (typeof q[key] === 'function') {
+          return q[key](node[key]);
+        }
         else if (q[key] instanceof RegExp) {
           return node[key].match(q[key]);
         }

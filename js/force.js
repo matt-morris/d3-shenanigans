@@ -99,7 +99,7 @@ function Graph(selector, options) {
           }
         }
         else if (typeof q[key] === 'function') {
-          return q[key](node[key]);
+          return q[key].call(this, node[key]);
         }
         else if (q[key] instanceof RegExp) {
           return node[key].match(q[key]);

@@ -78,7 +78,7 @@ function Graph(selector, options) {
         if (typeof q[key] === 'boolean') {
           return node[key] == q[key];
         }
-        else if (typeof q[key] === 'string') {
+        else if (typeof q[key] === 'string' || q[key] instanceof RegExp) {
           return node[key].match(q[key]);
         }
         else if (typeof q[key] === 'number') {
@@ -100,9 +100,6 @@ function Graph(selector, options) {
         }
         else if (typeof q[key] === 'function') {
           return q[key].call(this, node[key]);
-        }
-        else if (q[key] instanceof RegExp) {
-          return node[key].match(q[key]);
         }
         else {
           console.warn('what case is this?');

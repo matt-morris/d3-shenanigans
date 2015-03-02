@@ -133,8 +133,9 @@ function Graph(selector, options) {
 
   var findNodeIndex = function(id) {
     for (var i=0; i < nodes.length; i++) {
-      if (nodes[i].id === id)
+      if (nodes[i].id === id) {
         return i;
+      }
     }
   };
 

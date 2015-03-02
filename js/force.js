@@ -6,10 +6,7 @@ function Graph(selector, options) {
 
   this.addNode = function(node) {
     node = node || {};
-    if (typeof node === 'string') {
-      node = { id: node };
-    }
-    else if (typeof node === 'number') {
+    if (typeof node === 'string' || typeof node === 'number') {
       node = { id: node };
     }
 

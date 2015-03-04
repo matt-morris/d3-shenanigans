@@ -72,35 +72,35 @@ function Graph(selector, options) {
     });
   };
 
-  this.nodesWhere = function(q) {
+  var where = function(q, collection) {
     var keys = Object.keys(q);
-    return nodes.filter(function(node) {
+    return collection.filter(function(el) {
       return keys.filter(function(key) {
         if (typeof q[key] === 'boolean') {
-          return node[key] == q[key];
+          return el[key] == q[key];
         }
         else if (typeof q[key] === 'string' || q[key] instanceof RegExp) {
-          return node[key].match(q[key]);
+          return el[key].match(q[key]);
         }
         else if (typeof q[key] === 'number') {
-          return node[key] == q[key];
+          return el[key] == q[key];
         }
         else if (typeof q[key] === 'object') {
           if (q[key]['<'] && typeof q[key]['<'] === 'number') {
-            return node[key] < q[key]['<'];
+            return el[key] < q[key]['<'];
           }
           if (q[key]['>'] && typeof q[key]['>'] === 'number') {
-            return node[key] > q[key]['>'];
+            return el[key] > q[key]['>'];
           }
           if (q[key]['>='] && typeof q[key]['>='] === 'number') {
-            return node[key] >= q[key]['>='];
+            return el[key] >= q[key]['>='];
           }
           if (q[key]['<='] && typeof q[key]['<='] === 'number') {
-            return node[key] <= q[key]['<='];
+            return el[key] <= q[key]['<='];
           }
         }
         else if (typeof q[key] === 'function') {
-          return q[key].call(this, node[key]);
+          return q[key].call(this, el[key]);
         }
         else {
           console.warn('what case is this?');
@@ -110,12 +110,12 @@ function Graph(selector, options) {
   };
 
   this.linksWhere = function(q) {
-    var keys = Object.keys(q);
-    return links.filter(function(link) {
-      return keys.filter(function(key) {
-        return link[key] == q[key]; }).length === keys.length;
-    });
+    return where(q, links);
   };
+
+  this.nodesWhere = function(q) {
+    return where(q, nodes);
+  }
 
   var findNode = function(id) {
     return nodes.filter(function(node) { return node.id === id; })[0];

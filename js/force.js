@@ -115,7 +115,7 @@ function Graph(selector, options) {
 
   this.nodesWhere = function(q) {
     return where(q, nodes);
-  }
+  };
 
   var findNode = function(id) {
     return nodes.filter(function(node) { return node.id === id; })[0];

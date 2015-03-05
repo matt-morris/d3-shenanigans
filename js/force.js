@@ -489,6 +489,9 @@ function Graph(selector, options) {
         });
         update();
         break;
+      case 85:
+        update();
+        break;
       default:
         // console.log(d3.event.which, d3.event);
       }
